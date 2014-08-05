@@ -1,8 +1,21 @@
 // Place all the styles related to the map_page controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#map-canvas {
-    height:600px;
-    width:800px;
+ 
+
+
+
+#googleMap {
+    height:620px;
+    width:920px;
     border: 2px solid black;
 }
+
+#input_data{
+    position: fixed;
+    top: 10px;
+    right: 30px;
+    text-align: right;
+
+}
+
