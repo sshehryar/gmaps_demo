@@ -2,7 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
  
+html{
 
+background: #33485C;
+
+
+}
 
 
 #googleMap {
@@ -13,9 +18,31 @@
 
 #input_data{
     position: fixed;
-    top: 10px;
-    right: 30px;
+    top: 500px;
+    right: 40px;
     text-align: right;
 
 }
 
+#img1{
+
+    position: fixed;
+    top: 100px;
+    right:5px;
+    z-index: -5;
+    
+
+}
+
+#crdts{
+
+position: fixed;
+    top: 10px;
+    right:70px;
+    text-align: center;
+    color: white;
+}
+
+a{
+color: white;
+}

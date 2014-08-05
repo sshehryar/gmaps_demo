@@ -68,13 +68,13 @@
                 {
                     alert("The Limits for either Latitude or Longitude are out of bound.Please Try Again!");
                     
-                    document.getElementById("latitude").value="";
-                    
-                    document.getElementById("longitude").value="";
+                    clrTxt();
                 }
                 else{   
                     //before changing map, marker.setMap(null) used to destroy previous marker instance.
                     marker.setMap(null);
+                    //before changing map, previous coordinates clear
+                    clrTxt();
                     //new center defined according to the coordinated input for LatLng.
                     myCenter = new google.maps.LatLng(lat, lng);
                     //map panned to new coordinates.
@@ -94,14 +94,21 @@
                       infowindow.open(map,marker);
                   });
 
+                }
+                
+            }    
+               
+                //function created to clear text boxes
+                function clrTxt(){
                 
                 
+                    document.getElementById("latitude").value="";
+                    
+                    document.getElementById("longitude").value="";
                 
                 }
                 
-                
-                
-            }    
+               
 
     </script>
     </head>
@@ -109,9 +116,16 @@
     <body>
         <div id="googleMap"></div>
         <div id="input_data">
-        Latitude:<input id="latitude" type="text" value="50" /><br/>
-        Longitude:<input id="longitude" type="text" value="130"/><br/>
+        <font color="white"><b>Latitude:</b></font><input id="latitude" type="text" value="50" /><br/>
+        <font color="white"><b>Longitude:</b></font><input id="longitude" type="text" value="130"/><br/>
         <button id="panButton" onclick="pan()">Go!</button>  
+        </div>
+        <div id="img1">
+        <%= image_tag "map_icon.png" %>  
         </div>    
+        <div id="crdts">
+        <h3>Playing with Google Maps</h3>
+        <p>Created By:<br/>Shehryar<br/><a href="https://github.com/sshehryar/gmaps_demo">Github</a> </p>
+        </div>
     </body>
 </html>
