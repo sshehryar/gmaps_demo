@@ -18,8 +18,8 @@ background: #33485C;
 
 #input_data{
     position: fixed;
-    top: 500px;
-    right: 40px;
+    top: 300px;
+    right: 35px;
     text-align: right;
 
 }
@@ -27,7 +27,7 @@ background: #33485C;
 #img1{
 
     position: fixed;
-    top: 100px;
+    top: 60px;
     right:5px;
     z-index: -5;
     
@@ -37,7 +37,7 @@ background: #33485C;
 #crdts{
 
 position: fixed;
-    top: 10px;
+    top: 0px;
     right:70px;
     text-align: center;
     color: white;
@@ -45,4 +45,21 @@ position: fixed;
 
 a{
 color: white;
+}
+
+#polyline_markers{
+
+    position:fixed;
+    top: 380px;
+    right:30px;
+    text-align: center;
+    color:white;
+    
+
+}
+
+#ui_interact{
+    position:fixed;
+    top: 470px;
+    right:125px;
 }
