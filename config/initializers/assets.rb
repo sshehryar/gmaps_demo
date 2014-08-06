@@ -9,3 +9,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( map.js )
 Rails.application.config.assets.precompile += %w( map_LatLng.js )
 Rails.application.config.assets.precompile += %w( ui_interact.js )
+Rails.application.config.assets.precompile += %w( jQuery.js )

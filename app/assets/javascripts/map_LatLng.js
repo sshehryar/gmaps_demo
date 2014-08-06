@@ -12,7 +12,10 @@ function initialize() {
   mapProp = {
     center: myCenter,
     zoom: 6,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.HYBRID,
+    panControl: true,
+    zoomControl: true,
+    disableDefaultUI: true  
   };
 
   map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
