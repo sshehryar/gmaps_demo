@@ -7,6 +7,8 @@ var myCenter = new google.maps.LatLng(0,
 var panButton = document.getElementById('panButton');
 var lat;
 var lng;
+var lat2;
+var lng2;
 
 function initialize() {
   mapProp = {
@@ -29,13 +31,15 @@ function initialize() {
 }
 
 google.maps.event.addDomListener(window,'load', initialize);
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function pan() {
   //function executed on clicking Go! Button.    
   lat = document.getElementById("latitude").value;
   lng = document.getElementById("longitude").value;
+  lat2 = document.getElementById("latitude2").value;
+  lng2 = document.getElementById("longitude2").value;    
   //Condition added to account for -90<lat<90 and -180<lng<180.    
-  if ((lat > 90 || lat < -90) || (lng <-180 || lng > 180)) {
+  if (((lat||lat2) > 90 || (lat||lat2) < -90) || ((lng||lng2) <-180 || (lng||lng2) > 180)) {
     alert("The Limits for either Latitude or Longitude are out of bound.Please Try Again!");
       clrTxt();
   } 
@@ -72,7 +76,8 @@ function pan() {
 function clrTxt() {
 
   document.getElementById("latitude").value = "";
-
   document.getElementById("longitude").value = "";
+  document.getElementById("latitude2").value = "";
+  document.getElementById("longitude2").value = "";    
 
 }
