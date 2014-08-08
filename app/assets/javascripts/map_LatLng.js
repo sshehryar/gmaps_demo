@@ -78,8 +78,8 @@ function pan() {
 
       new_boundary = new google.maps.LatLngBounds();
 
-      for(index in markers){
-        position = markers[index].position;
+      for(i=0; i<markers.length; i++){
+        position = markers[i].position;
         new_boundary.extend(position);
       }
 
