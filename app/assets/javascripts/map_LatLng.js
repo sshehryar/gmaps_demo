@@ -14,7 +14,9 @@ var path;
 var path_line;
 
 function initialize() {
-  mapProp = {
+
+//Define custom properties for the map
+    mapProp = {
     center: myCenter,
     zoom: 6,
     mapTypeId: google.maps.MapTypeId.HYBRID,
@@ -22,22 +24,16 @@ function initialize() {
     zoomControl: true,
     disableDefaultUI: true  
   };
-
+//Initialize the map variable and make it get its style form "googleMap" div and properties from mapProp
   map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-  marker = new google.maps.Marker({
-    position: myCenter,
-  });
-
+//
+    setMarker1();
+    
+//
+    setMarker2();
   marker.setMap(map);
 
-marker2 = new google.maps.Marker({
-            position: loc2,
-    
-});
-
-marker2.setMap(map);   
-    
 //plot the polyline path between the two markers
     init_path();
 //set the path_line
@@ -47,41 +43,36 @@ marker2.setMap(map);
 
 }
 
+//////////////////Initialize the map after page has loaded//////////////////////////////////////////////////////////////////////
+
 google.maps.event.addDomListener(window,'load', initialize);
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////Executed on Pressing Go!/////////////////////////////////////////////////////////////////////////////////////////////
 function pan() {
-  //function executed on clicking Go! Button.    
-  lat = document.getElementById("latitude").value;
-  lng = document.getElementById("longitude").value;
-  lat2 = document.getElementById("latitude2").value;
-  lng2 = document.getElementById("longitude2").value;    
-  //Condition added to account for -90<lat<90 and -180<lng<180.    
+  
+    lat = document.getElementById("latitude").value;
+    lng = document.getElementById("longitude").value;
+    lat2 = document.getElementById("latitude2").value;
+    lng2 = document.getElementById("longitude2").value;    
+//Condition added to account for -90<lat<90 and -180<lng<180.    
   if (((lat||lat2)>90||(lat||lat2)<-90)||((lng||lng2)<-180||(lng||lng2)>180)) {
-    alert("The Limits for either Latitude or Longitude are out of bound.Please Try Again!");
+      alert("The Limits for either Latitude or Longitude are out of bound.Please Try Again!");
       clrTxt();
   } 
   else {
 //before changing map, markers set to null to erase previous marker instance.
-    marker.setMap(null);
-    marker2.setMap(null); 
+      marker.setMap(null);
+      marker2.setMap(null); 
 //Erase previous path line
-    path_line.setMap(null);
+      path_line.setMap(null);
 //before changing map, previous coordinates clear
-    clrTxt();
+      clrTxt();
 //new center defined according to the coordinated input for LatLng & loc2 is the location of 2nd pair of coordinates
-    myCenter = new google.maps.LatLng(lat, lng);
-    loc2 = new google.maps.LatLng(lat2,lng2);
+      myCenter = new google.maps.LatLng(lat, lng);
+      loc2 = new google.maps.LatLng(lat2,lng2);
 //new markers defined for current postions according to the 2 pairs of coordinates
-      marker = new google.maps.Marker({
-      position: myCenter,
-    });
-      marker2 = new google.maps.Marker({
-      
-      position: loc2,
-      }); 
-//new markers deployed on map.    
-    marker.setMap(map);
-    marker2.setMap(map);  
+      setMarker1();
+      setMarker2();      
 
 //Map autozoomed to display both the markers.
       markers = [marker, marker2];
@@ -97,8 +88,8 @@ function pan() {
 //map panned to new coordinates.
       map.panTo(new_boundary);    
 //plot the polyline path between the two markers
-init_path();
-set_path();
+      init_path();
+      set_path();
   }
 
 }
@@ -127,4 +118,21 @@ function init_path(){
 //function to add path////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function set_path(){
     path_line.setMap(map);
+}
+
+////function to set first marker//////////////////////////////////////////////////////////////////////////////////////////////////////
+function setMarker1(){
+
+  marker = new google.maps.Marker({
+    position: myCenter,
+    });
+  marker.setMap(map);
+}
+
+//////////////FUNCTION TO SET 2ND MARKER//////////////////////////////////////////////////////////////////////////////////////////////
+function setMarker2(){
+    marker2 = new google.maps.Marker({
+      position: loc2,
+    });
+  marker2.setMap(map);   
 }
