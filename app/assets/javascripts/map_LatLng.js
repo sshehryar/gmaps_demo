@@ -9,13 +9,15 @@ var lat;
 var lng;
 var lat2;
 var lng2;
+var marker2;
+var loc2 = new google.maps.LatLng(0,0.5);
 
 function initialize() {
   mapProp = {
     center: myCenter,
     zoom: 6,
     mapTypeId: google.maps.MapTypeId.HYBRID,
-    panControl: true,
+    panControl: false,
     zoomControl: true,
     disableDefaultUI: true  
   };
@@ -27,6 +29,13 @@ function initialize() {
   });
 
   marker.setMap(map);
+
+marker2 = new google.maps.Marker({
+            position: loc2,
+    
+});
+
+marker2.setMap(map);    
 
 }
 
@@ -44,31 +53,41 @@ function pan() {
       clrTxt();
   } 
   else {
-    //before changing map, marker.setMap(null) used to destroy previous marker instance.
+//before changing map, markers set to null to erase previous marker instance.
     marker.setMap(null);
-    //before changing map, previous coordinates clear
+    marker2.setMap(null);  
+//before changing map, previous coordinates clear
     clrTxt();
-    //new center defined according to the coordinated input for LatLng.
+//new center defined according to the coordinated input for LatLng & loc2 is the location of 2nd pair of coordinates
     myCenter = new google.maps.LatLng(lat, lng);
-    //map panned to new coordinates.
-    map.panTo(myCenter);
-    //new marker defined for current postion.
-    marker = new google.maps.Marker({
+    loc2 = new google.maps.LatLng(lat2,lng2);
+//new markers defined for current postions according to the 2 pairs of coordinates
+      marker = new google.maps.Marker({
       position: myCenter,
     });
-    //new marker deployed on map.    
+      marker2 = new google.maps.Marker({
+      
+      position: loc2,
+      }); 
+//new markers deployed on map.    
     marker.setMap(map);
-    //infowindows added so that when marker is clicked, current latitude + longitude are displayed. 
-    var infowindow = new google.maps.InfoWindow({
-      content: "<p><b>Latitude:</b></p>" +lat +"<p><b>Longitude:</b></p>" +lng
-    });
-    //even listener added to cater for the click action on marker.
-    google.maps.event.addListener(
-      marker, 'click', function() {
-        infowindow.open(map, marker);
-      });
+    marker2.setMap(map);  
 
+//Map autozoomed to display both the markers.
+      markers = [marker, marker2];
+
+      new_boundary = new google.maps.LatLngBounds();
+
+      for(index in markers){
+        position = markers[index].position;
+        new_boundary.extend(position);
+      }
+
+      map.fitBounds(new_boundary);
   }
+    
+//map panned to new coordinates.
+        map.panTo(new_boundary);    
 
 }
 
