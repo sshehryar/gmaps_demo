@@ -1,12 +1,12 @@
 Google Maps Javascript Api v3 Demo App
 
-This App is demonstrates how to initialize and play with varying coordinates (Longitude, Latitude) on google maps using google maps API v3, and without using any Ruby Gems. 
+This App demonstrates how to initialize and play with coordinates (Longitude, Latitude) on google maps using google maps API v3, and without using any Ruby Gems. 
 
 It consists of just an html view supported by a controller and no model is generated since use of database with this application was not intended.
 
 * Ruby version
 
-This Application uses Ruby 2.1.2p95 and 4.1.2.
+This Application uses Ruby 2.1.2p95 and Rails 4.1.2.
 
 * System dependencies
 
